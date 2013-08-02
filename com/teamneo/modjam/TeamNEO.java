@@ -1,6 +1,12 @@
 package com.teamneo.modjam;
 
+import java.util.logging.Logger;
+
+import com.teamneo.modjam.server.CommonProxy;
+
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -16,23 +22,39 @@ public final class TeamNEO{
 	@Mod.Instance(ID)
 	public static TeamNEO instance;
 	
+	@SidedProxy(clientSide="com.teamneo.modjam.client.ClientProxy", serverSide="com.teamneo.modjam.server.CommonProxy")
+	public static CommonProxy proxy;
+	
+	public static final Logger logger = Logger.getLogger(TeamNEO.class.getSimpleName());
+	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event){
+		logger.setParent(FMLLog.getLogger());
+		logger.info("Pre-Initialization");
 		
+		logger.info("Proxy");
+		proxy.registerRenderIds();
+		proxy.registerRenders();
+		logger.info("Done With Proxy");
+		
+		logger.info("Done Pre-Initialization");
 	}
 	
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event){
-		
+		logger.info("Initialization");
+		logger.info("Done Initialization");
 	}
 	
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event){
-		
+		logger.info("Post-Initialization");
+		logger.info("Done Post-Initialization");
 	}
 	
 	@Mod.EventHandler
 	public void serverStarting(FMLServerStartingEvent event){
-		
+		logger.info("Server-Starting");
+		logger.info("Done Server-Starting");
 	}
 }
