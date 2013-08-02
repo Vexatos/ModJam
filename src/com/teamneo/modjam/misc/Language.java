@@ -10,6 +10,9 @@ public final class Language{
 	
 	public void addAll(){
 		registerItem(Items.itemScubaTop);
+		registerItem(Items.itemScubaFlippers);
+		registerItem(Items.itemScubaHelmet);
+		registerItem(Items.itemScubaLeggings);
 	}
 	
 	public static void loadAll(){
