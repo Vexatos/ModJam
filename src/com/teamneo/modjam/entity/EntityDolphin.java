@@ -1,24 +1,30 @@
 package com.teamneo.modjam.entity;
 
-import com.teamneo.modjam.misc.Language;
-import com.teamneo.modjam.misc.SessionData;
-
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityWhale extends EntityWaterMob {
+import com.teamneo.modjam.entity.ai.EntityAIDrowning;
+
+public class EntityDolphin extends EntityWaterMob {
 	private float randomMotionVecX;
 	private float randomMotionVecY;
 	private float randomMotionVecZ;
 
-	public EntityWhale(World par1World) {
+	public EntityDolphin(World par1World) {
 		super(par1World);
-		this.setEntityHealth(100);
+		this.tasks.addTask(1, new EntityAIDrowning(this));
+		this.setEntityHealth(50);
 		this.setSize(1, 1);
-		this.setAIMoveSpeed(0.7F);
+		this.setAIMoveSpeed(0.3F);
+	}
+
+	/**
+	 * Returns true if the newer Entity AI code should be run
+	 */
+	protected boolean isAIEnabled() {
+		return true;
 	}
 
 	/**
@@ -26,7 +32,7 @@ public class EntityWhale extends EntityWaterMob {
 	 */
 	@Override
 	protected int getExperiencePoints(EntityPlayer par1EntityPlayer) {
-		return 3 + this.worldObj.rand.nextInt(3);
+		return 2 + this.worldObj.rand.nextInt(3);
 	}
 
 	/**
@@ -76,6 +82,15 @@ public class EntityWhale extends EntityWaterMob {
 		this.despawnEntity();
 	}
 
+	/**
+	 * Checks if the entity's current position is a valid location to spawn this
+	 * entity.
+	 */
+	@Override
+	public boolean getCanSpawnHere() {
+		return this.posY > 45.0D && this.posY < 63.0D && super.getCanSpawnHere();
+	}
+
 	// /**
 	// * Returns the item ID for the item the mob drops on death.
 	// */
@@ -98,5 +113,5 @@ public class EntityWhale extends EntityWaterMob {
 	//
 	//
 	// }
-
+	
 }
