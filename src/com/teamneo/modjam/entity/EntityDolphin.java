@@ -14,7 +14,7 @@ public class EntityDolphin extends EntityWaterMob {
 
 	public EntityDolphin(World par1World) {
 		super(par1World);
-		this.tasks.addTask(1, new EntityAIDrowning(this));
+		//this.tasks.addTask(1, new EntityAIDrowning(this));
 		this.setEntityHealth(50);
 		this.setSize(1, 1);
 		this.setAIMoveSpeed(0.3F);

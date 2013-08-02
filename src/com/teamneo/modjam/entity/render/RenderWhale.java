@@ -1,5 +1,7 @@
 package com.teamneo.modjam.entity.render;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
@@ -9,7 +11,7 @@ import com.teamneo.modjam.entity.EntityWhale;
 import com.teamneo.modjam.entity.model.ModelWhale;
 
 public class RenderWhale extends RenderLiving {
-	private static final ResourceLocation textureWhale = new ResourceLocation("teamneo:textures/model/whale.png");
+	private static final ResourceLocation textureWhale = new ResourceLocation("teamneo:textures/models/whale.png");
 	private ModelWhale model;
 
 	public RenderWhale(ModelBase par1ModelBase, float par2) {
