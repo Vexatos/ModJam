@@ -7,9 +7,9 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 
-public final class DiverTradeHandler implements IVillageTradeHandler{
+public final class DiverTradeHandler implements IVillageTradeHandler {
 	@Override
-	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipes, Random random){
-		
+	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipes, Random random) {
+
 	}
 }

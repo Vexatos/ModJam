@@ -15,32 +15,32 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-public final class ClientProxy extends CommonProxy{
+public final class ClientProxy extends CommonProxy {
 	@Override
-	public int addArmor(String name){
+	public int addArmor(String name) {
 		return RenderingRegistry.addNewArmourRendererPrefix(name);
 	}
-	
+
 	@Override
-	public void registerRenders(){
-		
+	public void registerRenders() {
+
 	}
-	
+
 	@Override
-	public void registerRenderIds(){
-		
+	public void registerRenderIds() {
+
 	}
-	
+
 	@Override
 	public void registerMobs() {
-		EntityRegistry.registerGlobalEntityID(EntityWhale.class, "EntityWhale",EntityRegistry.findGlobalUniqueEntityId(), 0xffffff, 0x000000);
-		EntityRegistry.registerGlobalEntityID(EntityShark.class, "EntityShark",EntityRegistry.findGlobalUniqueEntityId(), 0xffffff, 0x000000);
-		EntityRegistry.registerGlobalEntityID(EntityDolphin.class, "EntityDolphin",EntityRegistry.findGlobalUniqueEntityId(), 0xffffff, 0x000000);
-		
+		EntityRegistry.registerGlobalEntityID(EntityWhale.class, "EntityWhale", EntityRegistry.findGlobalUniqueEntityId(), 0xffffff, 0x000000);
+		EntityRegistry.registerGlobalEntityID(EntityShark.class, "EntityShark", EntityRegistry.findGlobalUniqueEntityId(), 0xffffff, 0x000000);
+		EntityRegistry.registerGlobalEntityID(EntityDolphin.class, "EntityDolphin", EntityRegistry.findGlobalUniqueEntityId(), 0xffffff, 0x000000);
+
 		LanguageRegistry.instance().addStringLocalization("entity.EntityWhale.name", "Whale");
 		LanguageRegistry.instance().addStringLocalization("entity.EntityShark.name", "Shark");
 		LanguageRegistry.instance().addStringLocalization("entity.EntityDolphin.name", "Dolphin");
-		
+
 		RenderingRegistry.registerEntityRenderingHandler(EntityWhale.class, new RenderWhale(new ModelWhale(), 0.3F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityShark.class, new RenderShark(new ModelShark(), 0.3F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDolphin.class, new RenderDolphin(new ModelDolphin(), 0.3F));

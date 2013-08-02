@@ -10,44 +10,39 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public final class WorldGenerator implements IWorldGenerator {
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world,
-			IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		switch (world.provider.dimensionId) {
-		case -1:
-			generateNether(world, random, chunkX * 16, chunkZ * 16);
-			break;
-		case 0:
-			generateSurface(world, random, chunkX * 16, chunkZ * 16);
-			break;
-		case 1:
-			generateEnd(world, random, chunkX * 16, chunkZ * 16);
-			break;
-		default:
-			break;
+			case -1:
+				generateNether(world, random, chunkX * 16, chunkZ * 16);
+				break;
+			case 0:
+				generateSurface(world, random, chunkX * 16, chunkZ * 16);
+				break;
+			case 1:
+				generateEnd(world, random, chunkX * 16, chunkZ * 16);
+				break;
+			default:
+				break;
 		}
 	}
 
-	private void addOreGen(int maxYLevel, int blockID, int rarity,
-			int veinSize, int blockX, int blockZ, Random rand, World world) {
+	private void addOreGen(int maxYLevel, int blockID, int rarity, int veinSize, int blockX, int blockZ, Random rand, World world) {
 		for (int i = 0; i < rarity; i++) {
 			int xCoord = blockX + rand.nextInt(16);
 			int yCoord = rand.nextInt(maxYLevel);
 			int zCoord = blockZ + rand.nextInt(16);
 
-			new WorldGenMinable(blockID, veinSize).generate(world, rand,
-					xCoord, yCoord, zCoord);
+			new WorldGenMinable(blockID, veinSize).generate(world, rand, xCoord, yCoord, zCoord);
 		}
 	}
 
-	private void addUnderwaterGen(int maxYLevel, int blockID, int rarity,
-			int veinSize, int blockX, int blockZ, Random rand, World world) {
+	private void addUnderwaterGen(int maxYLevel, int blockID, int rarity, int veinSize, int blockX, int blockZ, Random rand, World world) {
 		for (int i = 0; i < rarity; i++) {
 			int xCoord = blockX + rand.nextInt(16);
 			int yCoord = rand.nextInt(maxYLevel);
 			int zCoord = blockZ + rand.nextInt(16);
 
-			new WorldGenUnderwaterBlock(blockID, veinSize).generate(world,
-					rand, xCoord, yCoord, zCoord);
+			new WorldGenUnderwaterBlock(blockID, veinSize).generate(world, rand, xCoord, yCoord, zCoord);
 		}
 	}
 

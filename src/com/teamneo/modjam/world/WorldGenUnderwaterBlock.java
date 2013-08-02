@@ -20,8 +20,7 @@ public class WorldGenUnderwaterBlock extends WorldGenerator {
 	}
 
 	@Override
-	public boolean generate(World par1World, Random par2Random, int par3,
-			int par4, int par5) {
+	public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5) {
 		float f = par2Random.nextFloat() * (float) Math.PI;
 		double d = par3 + 8 + (MathHelper.sin(f) * numberOfBlocks) / 8F;
 		double d1 = par3 + 8 - (MathHelper.sin(f) * numberOfBlocks) / 8F;
@@ -35,14 +34,8 @@ public class WorldGenUnderwaterBlock extends WorldGenerator {
 			double d7 = d4 + ((d5 - d4) * i) / numberOfBlocks;
 			double d8 = d2 + ((d3 - d2) * i) / numberOfBlocks;
 			double d9 = (par2Random.nextDouble() * numberOfBlocks) / 16D;
-			double d10 = (MathHelper
-					.sin((i * (float) Math.PI) / numberOfBlocks) + 1.0F)
-					* d9
-					+ 1.0D;
-			double d11 = (MathHelper
-					.sin((i * (float) Math.PI) / numberOfBlocks) + 1.0F)
-					* d9
-					+ 1.0D;
+			double d10 = (MathHelper.sin((i * (float) Math.PI) / numberOfBlocks) + 1.0F) * d9 + 1.0D;
+			double d11 = (MathHelper.sin((i * (float) Math.PI) / numberOfBlocks) + 1.0F) * d9 + 1.0D;
 			int j = MathHelper.floor_double(d6 - d10 / 2D);
 			int k = MathHelper.floor_double(d7 - d11 / 2D);
 			int l = MathHelper.floor_double(d8 - d10 / 2D);
@@ -66,10 +59,7 @@ public class WorldGenUnderwaterBlock extends WorldGenerator {
 
 					for (int j2 = l; j2 <= k1; j2++) {
 						double d14 = ((j2 + 0.5D) - d8) / (d10 / 2D);
-						if (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D
-								&& par1World.getBlockId(l1, i2, j2) == Block.waterMoving.blockID
-								|| d12 * d12 + d13 * d13 + d14 * d14 < 1.0D
-								&& par1World.getBlockId(l1, i2, j2) == Block.waterStill.blockID) {
+						if (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && par1World.getBlockId(l1, i2, j2) == Block.waterMoving.blockID || d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && par1World.getBlockId(l1, i2, j2) == Block.waterStill.blockID) {
 							par1World.setBlock(l1, i2, j2, minableBlockId);
 						}
 					}

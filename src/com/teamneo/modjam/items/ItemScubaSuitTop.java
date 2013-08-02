@@ -8,15 +8,15 @@ import net.minecraft.item.ItemStack;
 import com.teamneo.modjam.TeamNEO;
 import com.teamneo.modjam.misc.SessionData;
 
-public final class ItemScubaSuitTop extends ItemArmor{
-	public ItemScubaSuitTop(int id){
+public final class ItemScubaSuitTop extends ItemArmor {
+	public ItemScubaSuitTop(int id) {
 		super(id, TeamNEO.materialScuba, SessionData.RENDER_SCUBA_TOP, 1);
 		this.setCreativeTab(TeamNEO.tab);
 		this.setUnlocalizedName("teamNeoScubaTop");
 	}
-	
+
 	@Override
-	public String getArmorTexture(ItemStack stac, Entity entity, int slot, int layer){
+	public String getArmorTexture(ItemStack stac, Entity entity, int slot, int layer) {
 		return null;
 	}
 }
