@@ -12,6 +12,11 @@ public final class Language{
 	}
 	
 	private static String getLocalizedName(String key){
+<<<<<<< HEAD
 		return getLocalizedName(key, SessionData.CURRENT_LANG);
+=======
+		return key;
+		
+>>>>>>> dcf09bd68c059f07269f5a6447b88a8908b3be6d
 	}
 }

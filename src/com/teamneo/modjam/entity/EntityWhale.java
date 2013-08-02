@@ -1,16 +1,24 @@
 package com.teamneo.modjam.entity;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityWhale extends EntityAnimal {
+public class EntityWhale extends EntityWaterMob {
+	private float randomMotionVecX;
+	private float randomMotionVecY;
+	private float randomMotionVecZ;
 
 	public EntityWhale(World par1World) {
 		super(par1World);
-		this.setEntityHealth(50);
+		this.setEntityHealth(100);
+		this.setSize(1, 1);
+		this.setAIMoveSpeed(0.8F);
 	}
 
 	/**
@@ -18,44 +26,89 @@ public class EntityWhale extends EntityAnimal {
 	 */
 	@Override
 	protected int getExperiencePoints(EntityPlayer par1EntityPlayer) {
-		return 1 + this.worldObj.rand.nextInt(3);
-	}
-
-	@Override
-	public void onLivingUpdate() {
+		return 3 + this.worldObj.rand.nextInt(3);
 	}
 
 	/**
-	 * This function is used when two same-species animals in 'love mode' breed
-	 * to generate the new baby animal.
+	 * Checks if this entity is inside water (if inWater field is true as a
+	 * result of handleWaterMovement() returning true)
 	 */
-	public EntityWhale spawnBabyAnimal(EntityAgeable par1EntityAgeable) {
-		return new EntityWhale(this.worldObj);
+	public boolean isInWater() {
+		return this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.6000000238418579D, 0.0D), Material.water, this);
 	}
 
-	public EntityAgeable createChild(EntityAgeable par1EntityAgeable) {
-		return this.spawnBabyAnimal(par1EntityAgeable);
+	/**
+	 * Called frequently so the entity can update its state every tick as
+	 * required. For example, zombies and skeletons use this to react to
+	 * sunlight and start to burn.
+	 */
+	public void onLivingUpdate() {
+		super.onLivingUpdate();
+
+		if (this.isInWater()) {
+
+			if (!this.worldObj.isRemote) {
+				this.motionX = (double) (this.randomMotionVecX * 0.9);
+				this.motionY = (double) (this.randomMotionVecY * 0.9);
+				this.motionZ = (double) (this.randomMotionVecZ * 0.9);
+			}
+
+			this.renderYawOffset += (-((float) Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float) Math.PI - this.renderYawOffset) * 0.1F;
+			this.rotationYaw = this.renderYawOffset;
+		} else {
+
+			if (!this.worldObj.isRemote) {
+				this.motionX = 0.0D;
+				this.motionY -= 0.08D;
+				this.motionY *= 0.9800000190734863D;
+				this.motionZ = 0.0D;
+			}
+
+		}
 	}
 
-//	/**
-//	 * Returns the item ID for the item the mob drops on death.
-//	 */
-//	protected int getDropItemId() {
-//		return ItemBlubber.itemID;
-//	}
-//
-//	/**
-//	 * Drop 0-2 items of this living's type. @param par1 - Whether this entity
-//	 * has recently been hit by a player. @param par2 - Level of Looting used to
-//	 * kill this mob.
-//	 */
-//	protected void dropFewItems(boolean par1, int par2) {
-//		int j = this.rand.nextInt(3) + this.rand.nextInt(1 + par2);
-//
-//		for (int k = 0; k < j; ++k) {
-//			this.dropItem(ItemBlubber.itemID, 1);
-//		}
-//
-//		
-//	}
+	protected void updateEntityActionState() {
+		++this.entityAge;
+
+		if (this.entityAge > 100) {
+			this.randomMotionVecX = this.randomMotionVecY = this.randomMotionVecZ = 0.0F;
+		} else if (this.rand.nextInt(50) == 0 || !this.inWater || this.randomMotionVecX == 0.0F && this.randomMotionVecY == 0.0F && this.randomMotionVecZ == 0.0F) {
+			float f = this.rand.nextFloat() * (float) Math.PI * 2.0F;
+			this.randomMotionVecX = MathHelper.cos(f) * 0.2F;
+			this.randomMotionVecY = -0.1F + this.rand.nextFloat() * 0.2F;
+			this.randomMotionVecZ = MathHelper.sin(f) * 0.2F;
+		}
+
+		this.despawnEntity();
+	}
+
+	/**
+	 * Checks if the entity's current position is a valid location to spawn this
+	 * entity.
+	 */
+	public boolean getCanSpawnHere() {
+		return this.posY > 45.0D && this.posY < 63.0D && super.getCanSpawnHere();
+	}
+	// /**
+	// * Returns the item ID for the item the mob drops on death.
+	// */
+	// protected int getDropItemId() {
+	// return ItemBlubber.itemID;
+	// }
+	//
+	// /**
+	// * Drop 0-2 items of this living's type. @param par1 - Whether this entity
+	// * has recently been hit by a player. @param par2 - Level of Looting used
+	// to
+	// * kill this mob.
+	// */
+	// protected void dropFewItems(boolean par1, int par2) {
+	// int j = this.rand.nextInt(3) + this.rand.nextInt(1 + par2);
+	//
+	// for (int k = 0; k < j; ++k) {
+	// this.dropItem(ItemBlubber.itemID, 1);
+	// }
+	//
+	//
+	// }
 }
