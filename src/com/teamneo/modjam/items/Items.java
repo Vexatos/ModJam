@@ -8,4 +8,5 @@ public final class Items {
 	public static final Item itemScubaLeggings = new ItemScubaSuitLeggings(5002);
 	public static final Item itemScubaFlippers = new ItemScubaSuitFlippers(5003);
 	public static final Item itemPearl = new ItemPearl(5004);
+	public static final Item itemShellShard = new ItemShellShard(5005);
 }
