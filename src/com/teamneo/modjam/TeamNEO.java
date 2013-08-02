@@ -2,6 +2,9 @@ package com.teamneo.modjam;
 
 import java.util.logging.Logger;
 
+import net.minecraft.item.EnumArmorMaterial;
+import net.minecraftforge.common.EnumHelper;
+
 import com.teamneo.modjam.server.CommonProxy;
 
 import cpw.mods.fml.common.FMLLog;
@@ -18,6 +21,8 @@ public final class TeamNEO{
 	public static final String VERSION = "@VERSION@";
 	public static final String DEPENDENCIES = "";
 	public static final String ID = "teamNEO";
+	
+	public static final EnumArmorMaterial materialScuba = EnumHelper.addArmorMaterial("rubber", 0, new int[]{0}, 0);
 	
 	@Mod.Instance(ID)
 	public static TeamNEO instance;
