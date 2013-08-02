@@ -1,5 +1,6 @@
 package com.teamneo.modjam.misc;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -39,5 +40,9 @@ public final class Language{
 	
 	private void registerStack(ItemStack stack){
 		LanguageRegistry.addName(stack, getLocalizedName(stack.getItem().getUnlocalizedName(stack)));
+	}
+	
+	private void registerBlock(Block block){
+		LanguageRegistry.addName(block, getLocalizedName(block.getUnlocalizedName()));
 	}
 }
