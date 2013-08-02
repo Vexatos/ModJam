@@ -1,10 +1,12 @@
 package com.teamneo.modjam.misc;
 
+import com.teamneo.modjam.items.Items;
+
 public final class Language{
 	public static Localization local = new Localization("/assets/teamneo/lang/");
 	
 	public void addAll(){
-		
+		getLocalizedName(Items.itemScubaTop.getUnlocalizedName());
 	}
 	
 	public static void loadAll(){

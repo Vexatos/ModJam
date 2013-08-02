@@ -29,5 +29,4 @@ public class RenderWhale extends RenderLiving {
 	protected ResourceLocation func_110775_a(Entity entity) {
 		return textureWhale;
 	}
-
 }

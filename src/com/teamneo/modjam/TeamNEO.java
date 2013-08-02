@@ -26,7 +26,7 @@ public final class TeamNEO{
 	public static final String DEPENDENCIES = "";
 	public static final String ID = "teamNEO";
 	
-	public static final EnumArmorMaterial materialScuba = EnumHelper.addArmorMaterial("rubber", 0, new int[]{0}, 0);
+	public static final EnumArmorMaterial materialScuba = EnumHelper.addArmorMaterial("rubber", 0, new int[]{0, 0, 0, 0}, 0);
 	
 	@Mod.Instance(ID)
 	public static TeamNEO instance;

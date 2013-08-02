@@ -11,7 +11,7 @@ import com.teamneo.modjam.misc.SessionData;
 public final class ItemScubaSuitTop extends ItemArmor{
 	public ItemScubaSuitTop(int id){
 		super(id, TeamNEO.materialScuba, SessionData.RENDER_SCUBA_TOP, 2);
-		this.setCreativeTab(CreativeTabs.tabCombat);
+		this.setCreativeTab(TeamNEO.tab);
 		this.setUnlocalizedName("teamNeoScubaTop");
 	}
 	
