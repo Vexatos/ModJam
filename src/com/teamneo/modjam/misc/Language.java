@@ -2,11 +2,14 @@ package com.teamneo.modjam.misc;
 
 import com.teamneo.modjam.items.Items;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.item.Item;
+
 public final class Language{
 	public static Localization local = new Localization("/assets/teamneo/lang/");
 	
 	public void addAll(){
-		getLocalizedName(Items.itemScubaTop.getUnlocalizedName());
+		registerItem(Items.itemScubaTop);
 	}
 	
 	public static void loadAll(){
@@ -23,5 +26,9 @@ public final class Language{
 	
 	private String getLocalizedName(String key){
 		return getLocalizedName(key, SessionData.CURRENT_LANG);
+	}
+	
+	private void registerItem(Item item){
+		LanguageRegistry.addName(item, getLocalizedName(item.getUnlocalizedName()));
 	}
 }
