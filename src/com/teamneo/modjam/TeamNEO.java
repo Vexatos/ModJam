@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 
+import com.teamneo.modjam.misc.Config;
 import com.teamneo.modjam.server.CommonProxy;
 
 import cpw.mods.fml.common.FMLLog;
@@ -31,6 +32,7 @@ public final class TeamNEO{
 	public static CommonProxy proxy;
 	
 	public static final Logger logger = Logger.getLogger(TeamNEO.class.getSimpleName());
+	private Config config;
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event){
@@ -41,6 +43,11 @@ public final class TeamNEO{
 		proxy.registerRenderIds();
 		proxy.registerRenders();
 		logger.info("Done With Proxy");
+		
+		logger.info("Config");
+		config = new Config(event);
+		config.load();
+		logger.info("Done With Config");
 		
 		logger.info("Done Pre-Initialization");
 	}
