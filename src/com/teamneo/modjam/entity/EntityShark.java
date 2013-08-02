@@ -1,7 +1,11 @@
 package com.teamneo.modjam.entity;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,15 +14,22 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityShark extends EntityWaterMob {
-	private float randomMotionVecX;
-	private float randomMotionVecY;
-	private float randomMotionVecZ;
 
 	public EntityShark(World par1World) {
 		super(par1World);
+		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
+		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.setEntityHealth(50);
 		this.setSize(1, 1);
-		this.setAIMoveSpeed(0.8F);
+		this.setAIMoveSpeed(0.3F);
+	}
+
+	/**
+	 * Returns true if the newer Entity AI code should be run
+	 */
+	protected boolean isAIEnabled() {
+		return true;
 	}
 
 	/**
@@ -38,52 +49,6 @@ public class EntityShark extends EntityWaterMob {
 		return this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.6000000238418579D, 0.0D), Material.water, this);
 	}
 
-	/**
-	 * Called frequently so the entity can update its state every tick as
-	 * required. For example, zombies and skeletons use this to react to
-	 * sunlight and start to burn.
-	 */
-	@Override
-	public void onLivingUpdate() {
-		super.onLivingUpdate();
-
-		if (this.isInWater()) {
-
-			if (!this.worldObj.isRemote) {
-				this.motionX = (double) (this.randomMotionVecX * 0.9);
-				this.motionY = (double) (this.randomMotionVecY * 0.9);
-				this.motionZ = (double) (this.randomMotionVecZ * 0.9);
-			}
-
-			this.renderYawOffset += (-((float) Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float) Math.PI - this.renderYawOffset) * 0.1F;
-			this.rotationYaw = this.renderYawOffset;
-		} else {
-
-			if (!this.worldObj.isRemote) {
-				this.motionX = 0.0D;
-				this.motionY -= 0.08D;
-				this.motionY *= 0.9800000190734863D;
-				this.motionZ = 0.0D;
-			}
-
-		}
-	}
-
-	@Override
-	protected void updateEntityActionState() {
-		++this.entityAge;
-
-		if (this.entityAge > 100) {
-			this.randomMotionVecX = this.randomMotionVecY = this.randomMotionVecZ = 0.0F;
-		} else if (this.rand.nextInt(50) == 0 || !this.inWater || this.randomMotionVecX == 0.0F && this.randomMotionVecY == 0.0F && this.randomMotionVecZ == 0.0F) {
-			float f = this.rand.nextFloat() * (float) Math.PI * 2.0F;
-			this.randomMotionVecX = MathHelper.cos(f) * 0.2F;
-			this.randomMotionVecY = -0.1F + this.rand.nextFloat() * 0.2F;
-			this.randomMotionVecZ = MathHelper.sin(f) * 0.2F;
-		}
-
-		this.despawnEntity();
-	}
 
 	/**
 	 * Checks if the entity's current position is a valid location to spawn this

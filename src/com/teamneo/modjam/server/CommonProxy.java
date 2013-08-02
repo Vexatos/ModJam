@@ -4,4 +4,5 @@ public class CommonProxy{
 	public void registerRenders(){}
 	public void registerRenderIds(){}
 	public int addArmor(String name){return 0;}
+	public void registerMobs() {}
 }
