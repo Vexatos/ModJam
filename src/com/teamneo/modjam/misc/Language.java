@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import com.teamneo.modjam.blocks.Blocks;
 import com.teamneo.modjam.items.Items;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -39,7 +40,7 @@ public final class Language{
 	}
 	
 	private void registerStack(ItemStack stack){
-		LanguageRegistry.addName(stack, getLocalizedName(stack.getItem().getUnlocalizedName(stack)));
+		LanguageRegistry.addName(stack, getLocalizedName(stack.getDisplayName()));
 	}
 	
 	private void registerBlock(Block block){

@@ -2,10 +2,13 @@ package com.teamneo.modjam;
 
 import java.util.logging.Logger;
 
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 
+import com.teamneo.modjam.blocks.Blocks;
 import com.teamneo.modjam.misc.Config;
 import com.teamneo.modjam.misc.Language;
 import com.teamneo.modjam.misc.Tab;
@@ -27,6 +30,8 @@ public final class TeamNEO{
 	public static final String ID = "teamNEO";
 	
 	public static final EnumArmorMaterial materialScuba = EnumHelper.addArmorMaterial("rubber", 0, new int[]{0, 0, 0, 0}, 0);
+	
+	public static final Material materialShell = new Material(MapColor.ironColor);
 	
 	@Mod.Instance(ID)
 	public static TeamNEO instance;
@@ -71,6 +76,11 @@ public final class TeamNEO{
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event){
 		logger.info("Initialization");
+		
+		logger.info("Adding Blocks");
+		Blocks.addBlocks();
+		logger.info("Done Adding Blocks");
+		
 		logger.info("Done Initialization");
 	}
 	
