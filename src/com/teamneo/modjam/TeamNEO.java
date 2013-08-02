@@ -48,6 +48,7 @@ public final class TeamNEO{
 		logger.info("Proxy");
 		proxy.registerRenderIds();
 		proxy.registerRenders();
+		proxy.registerMobs();
 		logger.info("Done With Proxy");
 		
 		logger.info("Config");
