@@ -1,5 +1,8 @@
 package com.teamneo.modjam.entity;
 
+import com.teamneo.modjam.misc.Language;
+import com.teamneo.modjam.misc.SessionData;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -17,7 +20,7 @@ public class EntityShark extends EntityWaterMob {
 	private float randomMotionVecX;
 	private float randomMotionVecY;
 	private float randomMotionVecZ;
-	
+
 	public EntityShark(World par1World) {
 		super(par1World);
 		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
@@ -98,6 +101,7 @@ public class EntityShark extends EntityWaterMob {
 	public boolean getCanSpawnHere() {
 		return this.posY > 45.0D && this.posY < 63.0D && super.getCanSpawnHere();
 	}
+
 	// /**
 	// * Returns the item ID for the item the mob drops on death.
 	// */
@@ -120,4 +124,5 @@ public class EntityShark extends EntityWaterMob {
 	//
 	//
 	// }
+	
 }
