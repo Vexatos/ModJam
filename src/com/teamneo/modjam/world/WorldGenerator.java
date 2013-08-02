@@ -37,6 +37,17 @@ public final class WorldGenerator implements IWorldGenerator{
 		}
 	}
 	
+	private void addUnderwaterGen(int maxYLevel, int blockID, int rarity, int veinSize, int blockX, int blockZ, Random rand, World world)
+	{
+	    for(int i = 0; i < rarity; i++){
+            int xCoord = blockX + rand.nextInt(16);
+            int yCoord = rand.nextInt(maxYLevel);
+            int zCoord = blockZ + rand.nextInt(16);
+            
+            new WorldGenUnderwaterBlock(blockID, veinSize).generate(world, rand, xCoord, yCoord, zCoord);
+        }
+	}
+	
 	private boolean isBiome(BiomeGenBase biome, World world, int x, int z){
 		return (world.getBiomeGenForCoords(x, z) == biome);
 	}
