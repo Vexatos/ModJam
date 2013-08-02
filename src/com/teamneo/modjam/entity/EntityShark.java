@@ -1,21 +1,24 @@
 package com.teamneo.modjam.entity;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityWhale extends EntityWaterMob {
+public class EntityShark extends EntityWaterMob {
 	private float randomMotionVecX;
 	private float randomMotionVecY;
 	private float randomMotionVecZ;
 
-	public EntityWhale(World par1World) {
+	public EntityShark(World par1World) {
 		super(par1World);
-		this.setEntityHealth(100);
+		this.setEntityHealth(50);
 		this.setSize(1, 1);
-		this.setAIMoveSpeed(0.7F);
+		this.setAIMoveSpeed(0.8F);
 	}
 
 	/**
@@ -23,7 +26,7 @@ public class EntityWhale extends EntityWaterMob {
 	 */
 	@Override
 	protected int getExperiencePoints(EntityPlayer par1EntityPlayer) {
-		return 3 + this.worldObj.rand.nextInt(3);
+		return 2 + this.worldObj.rand.nextInt(3);
 	}
 
 	/**
