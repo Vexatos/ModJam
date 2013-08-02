@@ -1,18 +1,25 @@
 package com.teamneo.modjam.misc;
 
 public final class Language{
-	private static Localization local = new Localization("/assets/teamneo/lang/");
+	public static Localization local = new Localization("/assets/teamneo/lang/");
 	
-	public static void addAll(){
+	public void addAll(){
 		
 	}
 	
-	private static String getLocalizedName(String key, String lang){
+	public static void loadAll(){
+		try{
+			local.loadLanguage("en_US");
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
+	
+	private String getLocalizedName(String key, String lang){
 		return local.translate(key, lang);
 	}
 	
-	private static String getLocalizedName(String key){
-		return key;
-		
+	private String getLocalizedName(String key){
+		return getLocalizedName(key, SessionData.CURRENT_LANG);
 	}
 }
