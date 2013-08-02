@@ -2,10 +2,13 @@ package com.teamneo.modjam;
 
 import java.util.logging.Logger;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 
 import com.teamneo.modjam.misc.Config;
+import com.teamneo.modjam.misc.Language;
+import com.teamneo.modjam.misc.Tab;
 import com.teamneo.modjam.server.CommonProxy;
 
 import cpw.mods.fml.common.FMLLog;
@@ -32,7 +35,10 @@ public final class TeamNEO{
 	public static CommonProxy proxy;
 	
 	public static final Logger logger = Logger.getLogger(TeamNEO.class.getSimpleName());
+	public static CreativeTabs tab;
+	
 	private Config config;
+	private Language lang;
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event){
@@ -49,6 +55,15 @@ public final class TeamNEO{
 		config.load();
 		logger.info("Done With Config");
 		
+		logger.info("Loading Languages");
+		lang = new Language();
+		Language.loadAll();
+		logger.info("Done Loading Languages");
+		
+		logger.info("Setting Creative Tab");
+		tab = new Tab();
+		logger.info("Done Setting Creative Tab");
+		
 		logger.info("Done Pre-Initialization");
 	}
 	
@@ -61,6 +76,11 @@ public final class TeamNEO{
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event){
 		logger.info("Post-Initialization");
+		
+		logger.info("Applying Lang");
+		lang.addAll();
+		logger.info("Done Applying Lang");
+		
 		logger.info("Done Post-Initialization");
 	}
 	
