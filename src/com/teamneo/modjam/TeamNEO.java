@@ -70,6 +70,10 @@ public final class TeamNEO{
 		tab = new Tab();
 		logger.info("Done Setting Creative Tab");
 		
+		logger.info("Blocks");
+        Blocks.addBlocks();
+        logger.info("Done With Blocks");
+		
 		logger.info("Done Pre-Initialization");
 	}
 	

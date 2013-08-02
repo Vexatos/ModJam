@@ -2,7 +2,6 @@ package com.teamneo.modjam.misc;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 import com.teamneo.modjam.blocks.Blocks;
 import com.teamneo.modjam.items.Items;
@@ -17,6 +16,7 @@ public final class Language{
 		registerItem(Items.itemScubaFlippers);
 		registerItem(Items.itemScubaHelmet);
 		registerItem(Items.itemScubaLeggings);
+		registerItem(Items.itemPearl);
 	}
 	
 	public static void loadAll(){
@@ -39,11 +39,17 @@ public final class Language{
 		LanguageRegistry.addName(item, getLocalizedName(item.getUnlocalizedName()));
 	}
 	
+<<<<<<< HEAD
 	private void registerStack(ItemStack stack){
 		LanguageRegistry.addName(stack, getLocalizedName(stack.getDisplayName()));
 	}
 	
 	private void registerBlock(Block block){
 		LanguageRegistry.addName(block, getLocalizedName(block.getUnlocalizedName()));
+=======
+	private void registerBlock(Block block)
+	{
+	    LanguageRegistry.addName(block, getLocalizedName(block.getUnlocalizedName()));
+>>>>>>> c495ae4fe4174ee1881f2ecad8baa5053df92fed
 	}
 }
