@@ -12,6 +12,7 @@ public final class Language{
 	}
 	
 	private static String getLocalizedName(String key){
+		return key;
 		
 	}
 }
