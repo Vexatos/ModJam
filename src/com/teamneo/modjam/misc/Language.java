@@ -1,9 +1,11 @@
 package com.teamneo.modjam.misc;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
 import com.teamneo.modjam.items.Items;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import net.minecraft.item.Item;
 
 public final class Language{
 	public static Localization local = new Localization("/assets/teamneo/lang/");
@@ -13,7 +15,6 @@ public final class Language{
 		registerItem(Items.itemScubaFlippers);
 		registerItem(Items.itemScubaHelmet);
 		registerItem(Items.itemScubaLeggings);
-		registerItem(Items.itemPearl);
 	}
 	
 	public static void loadAll(){
@@ -34,5 +35,9 @@ public final class Language{
 	
 	private void registerItem(Item item){
 		LanguageRegistry.addName(item, getLocalizedName(item.getUnlocalizedName()));
+	}
+	
+	private void registerStack(ItemStack stack){
+		LanguageRegistry.addName(stack, getLocalizedName(stack.getItem().getUnlocalizedName(stack)));
 	}
 }

@@ -17,11 +17,6 @@ public final class DiverTradeHandler implements IVillageTradeHandler{
 	
 	@Override
 	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipes, Random random){
-		addTrade(new ItemStack(Items.itemPearl, 10), new ItemStack(Items.itemScubaFlippers));
-		addTrade(new ItemStack(Items.itemPearl, 10), new ItemStack(Items.itemScubaHelmet));
-		addTrade(new ItemStack(Items.itemPearl, 10), new ItemStack(Items.itemScubaLeggings));
-		addTrade(new ItemStack(Items.itemPearl, 10), new ItemStack(Items.itemScubaTop));
-		
 		loadAll(recipes);
 	}
 	
