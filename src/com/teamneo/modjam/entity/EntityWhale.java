@@ -27,15 +27,6 @@ public class EntityWhale extends EntityWaterMob {
 	}
 
 	/**
-	 * Checks if this entity is inside water (if inWater field is true as a
-	 * result of handleWaterMovement() returning true)
-	 */
-	@Override
-	public boolean isInWater() {
-		return this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.6000000238418579D, 0.0D), Material.water, this);
-	}
-
-	/**
 	 * Called frequently so the entity can update its state every tick as
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
@@ -82,14 +73,6 @@ public class EntityWhale extends EntityWaterMob {
 		this.despawnEntity();
 	}
 
-	/**
-	 * Checks if the entity's current position is a valid location to spawn this
-	 * entity.
-	 */
-	@Override
-	public boolean getCanSpawnHere() {
-		return this.posY > 45.0D && this.posY < 63.0D && super.getCanSpawnHere();
-	}
 	// /**
 	// * Returns the item ID for the item the mob drops on death.
 	// */
