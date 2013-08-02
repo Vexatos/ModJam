@@ -13,6 +13,7 @@ public final class Language{
 		registerItem(Items.itemScubaFlippers);
 		registerItem(Items.itemScubaHelmet);
 		registerItem(Items.itemScubaLeggings);
+		registerItem(Items.itemPearl);
 	}
 	
 	public static void loadAll(){
